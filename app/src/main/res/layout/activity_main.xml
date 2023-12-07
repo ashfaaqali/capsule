@@ -24,6 +24,7 @@
             android:layout_marginStart="20dp"/>
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/timer"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -40,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabRippleColor="@null"
-        >
+        app:tabIndicatorFullWidth="true">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -56,11 +57,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quiz"/>
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quiz Result"/>
 
     </com.google.android.material.tabs.TabLayout>
 

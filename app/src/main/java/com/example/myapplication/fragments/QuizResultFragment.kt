@@ -25,22 +25,21 @@ class QuizResultFragment : Fragment() {
     ): View {
         binding = FragmentQuizResultBinding.inflate(layoutInflater)
         totalQuestions = QuestionAnswer.questions.size
-        quizScore = quizViewModel.quizScore
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        if (quizScore > totalQuestions * 0.60){
-            binding.resultImg.setImageResource(R.drawable.pass_ic)
-            binding.resultTv.text = "Passed"
-        } else {
-            binding.resultImg.setImageResource(R.drawable.fail_ic)
-            binding.resultTv.text = "Failed"
-        }
-
-        binding.scoreTv.text = "Score:\n" + quizScore + " out of " + totalQuestions
+//        if (quizScore > totalQuestions * 0.60){
+//            binding.resultImg.setImageResource(R.drawable.pass_ic)
+//            binding.resultTv.text = "Passed"
+//        } else {
+//            binding.resultImg.setImageResource(R.drawable.fail_ic)
+//            binding.resultTv.text = "Failed"
+//        }
+//
+//        binding.scoreTv.text = "Score:\n" + quizScore + " out of " + totalQuestions
 
     }
 }

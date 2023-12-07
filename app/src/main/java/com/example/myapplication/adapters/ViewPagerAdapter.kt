@@ -11,14 +11,13 @@ import com.example.myapplication.fragments.VideoFragment
 
 class ViewPagerAdapter (fragmentManager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
-    override fun getItemCount(): Int = 4
+    override fun getItemCount(): Int = 3
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> VideoFragment()
             1 -> NotesFragment()
             2 -> QuizFragment()
-            3 -> QuizResultFragment()
             else -> throw IllegalArgumentException("Invalid position: $position")
         }
     }
