@@ -16,7 +16,7 @@ import com.example.myapplication.viewmodels.QuizViewModel
 
 class QuizFragment : Fragment(), View.OnClickListener {
     private lateinit var binding: FragmentQuizBinding
-    private val totalQuestions = QuestionAnswer.questions.size
+    private var totalQuestions = 0
     private var currentQuestionIndex = 0
     private var selectedAnswer = ""
 
@@ -27,14 +27,12 @@ class QuizFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentQuizBinding.inflate(layoutInflater)
+        totalQuestions = QuestionAnswer.questions.size
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //Total questions
-        binding.totalQuestions.text = "Total Questions " + QuestionAnswer.questions.size.toString()
 
         getNewQuestion()
 
@@ -49,13 +47,19 @@ class QuizFragment : Fragment(), View.OnClickListener {
 
         if (currentQuestionIndex == totalQuestions) {
             finishQuiz()
+            return
         }
+
+        // Show current question no.
+        binding.totalQuestions.text = "${currentQuestionIndex + 1} of $totalQuestions"
 
         binding.question.text = QuestionAnswer.questions[currentQuestionIndex]
         binding.option1.text = QuestionAnswer.options[currentQuestionIndex][0]
         binding.option2.text = QuestionAnswer.options[currentQuestionIndex][1]
         binding.option3.text = QuestionAnswer.options[currentQuestionIndex][2]
 
+        // Reset selected answer for the new question
+        selectedAnswer = ""
     }
 
     private fun finishQuiz() {
@@ -67,22 +71,26 @@ class QuizFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-
-        binding.option1.setBackgroundColor(Color.WHITE)
-        binding.option2.setBackgroundColor(Color.WHITE)
-        binding.option3.setBackgroundColor(Color.WHITE)
-
-        binding.option1.setTextColor(resources.getColor(R.color.md_theme_dark_outlineVariant))
-        binding.option2.setTextColor(resources.getColor(R.color.md_theme_dark_outlineVariant))
-        binding.option3.setTextColor(resources.getColor(R.color.md_theme_dark_outlineVariant))
+        resetOptionsAppearance()
 
         val clickedButton: Button? = p0 as? Button
-
         if (clickedButton?.id == R.id.submit_btn) {
-            currentQuestionIndex++
-            getNewQuestion()
-            if (selectedAnswer == QuestionAnswer.correctAnswers[currentQuestionIndex]) {
-                quizViewModel.quizScore++
+            if (selectedAnswer.isEmpty()) { //No option selected
+                Toast.makeText(
+                    requireContext(),
+                    "Select an option",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else if (currentQuestionIndex < totalQuestions) { //More questions left
+                // Check if the selected answer is correct
+                if (selectedAnswer == QuestionAnswer.correctAnswers[currentQuestionIndex]) {
+                    quizViewModel.quizScore++
+                }
+                // Move to the next question
+                currentQuestionIndex++
+                getNewQuestion()
+            } else { //No questions left
+                finishQuiz()
             }
         } else {
             // Clicked button
@@ -90,5 +98,16 @@ class QuizFragment : Fragment(), View.OnClickListener {
             clickedButton?.setTextColor(Color.WHITE)
             clickedButton?.setBackgroundColor(resources.getColor(R.color.md_theme_light_primary))
         }
+    }
+
+    private fun resetOptionsAppearance() {
+        // Reset background color and text color for all options
+        binding.option1.setBackgroundColor(Color.WHITE)
+        binding.option2.setBackgroundColor(Color.WHITE)
+        binding.option3.setBackgroundColor(Color.WHITE)
+
+        binding.option1.setTextColor(resources.getColor(R.color.md_theme_dark_outlineVariant))
+        binding.option2.setTextColor(resources.getColor(R.color.md_theme_dark_outlineVariant))
+        binding.option3.setTextColor(resources.getColor(R.color.md_theme_dark_outlineVariant))
     }
 }
