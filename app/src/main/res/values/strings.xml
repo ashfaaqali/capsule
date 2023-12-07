@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">MyApplication</string>
+    <string name="app_name">Capsule</string>
+
+    <array name="questions">
+        <item>Which of the following is a large blood vessel that carries blood away from the heart?</item>
+        <item>Which of the following is not a member of the vitamin B complex?</item>
+        <item>Fungi are plants that lack........</item>
+        <item>What makes a reptile a reptile?</item>
+        <item>Which blood vessels have the smallest diameter?</item>
+        <item>Which blood vessels have the smallest diameter?</item>
+        <item>Which organ of the body produces the fluid known as bile?</item>
+        <item>Which of the following hormones is a steroid?</item>
+        <item>Which one of the following is not a function of the liver?</item>
+        <item>Which of the following is/are the main functions of Lymphocytes?</item>
+    </array>
 </resources>

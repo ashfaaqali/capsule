@@ -2,10 +2,8 @@ package com.example.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import com.example.myapplication.adapter.ViewPagerAdapter
+import com.example.myapplication.adapters.ViewPagerAdapter
 import com.example.myapplication.databinding.ActivityMainBinding
-import com.example.myapplication.fragments.VideoFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
