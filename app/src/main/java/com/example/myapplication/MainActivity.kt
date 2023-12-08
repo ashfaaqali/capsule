@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.adapters.ViewPagerAdapter
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.fragments.VideoFragment
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import java.util.Locale
 import java.util.concurrent.TimeUnit
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         val viewPager = binding.viewPager
         val tabLayout = binding.tabLayout
+        val progressBar = binding.progressBar
 
         val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
         viewPager.adapter = adapter
@@ -34,6 +37,19 @@ class MainActivity : AppCompatActivity() {
                 2 -> tab.text = "Quiz"
             }
         }.attach()
+
+        // Set up a ViewPager2 page change callback
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                val totalTabs = 3 // Assuming 3 tabs (Video, Notes, Quiz)
+                progressBar.progress = ((position.toFloat() / (totalTabs - 1)) * 100).toInt()
+
+                if (position == 0) {
+                    // If it's the Video tab, set the progress to 33%
+                    progressBar.progress = 33
+                }
+            }
+        })
     }
 
     private fun countdown() {

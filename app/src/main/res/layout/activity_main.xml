@@ -41,24 +41,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabRippleColor="@null"
-        app:tabIndicatorFullWidth="true">
+        style="@style/Widget.MaterialComponents.TabLayout"
+        app:tabIndicatorColor="@android:color/transparent"
+        app:tabIndicator="@null"/>
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Video"/>
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Notes"/>
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quiz"/>
-
-    </com.google.android.material.tabs.TabLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:max="100"
+        android:progress="33" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
