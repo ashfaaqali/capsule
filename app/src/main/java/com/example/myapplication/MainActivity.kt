@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         // Set up a ViewPager2 page change callback
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                val totalTabs = 3 // Assuming 3 tabs (Video, Notes, Quiz)
+                val totalTabs = 3
                 progressBar.progress = ((position.toFloat() / (totalTabs - 1)) * 100).toInt()
 
                 if (position == 0) {

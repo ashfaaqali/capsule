@@ -12,19 +12,23 @@ import com.example.myapplication.databinding.FragmentQuizResultBinding
 import com.example.myapplication.models.QuestionAnswer
 import com.example.myapplication.viewmodels.QuizViewModel
 
+// This was another approach of the task, after reading the task again carefully
+// I decided to remove it as the task says to 'Present with the result' rather than swipe to the result.
+
 class QuizResultFragment : Fragment() {
     private lateinit var binding: FragmentQuizResultBinding
     private val quizViewModel: QuizViewModel by activityViewModels()
-    private var result = ""
-    private var totalQuestions = 0
-    private var quizScore = 0
+//    private var result = ""
+//    private var totalQuestions = 0
+//    private var quizScore = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentQuizResultBinding.inflate(layoutInflater)
-        totalQuestions = QuestionAnswer.questions.size
+//        totalQuestions = QuestionAnswer.questions.size
+//        quizScore = quizViewModel.quizScore
 
         return binding.root
     }
